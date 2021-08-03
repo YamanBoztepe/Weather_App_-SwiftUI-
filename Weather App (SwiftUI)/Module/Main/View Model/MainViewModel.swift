@@ -13,8 +13,10 @@ class MainViewModel: ObservableObject {
     @Published var place = "-"
     @Published var icon = ""
     
+    private let locationManager = LocationManager()
+    
     init() {
-        fetchWeather(in: Coordinates(latitude: "41", longitude: "28"))
+        getLocation()
     }
     
     // MARK: - Fetching Weather
@@ -55,6 +57,16 @@ class MainViewModel: ObservableObject {
             return "sun.min"
         default:
             return "moon"
+        }
+    }
+    
+    // MARK:- Location Actions
+    private func getLocation() {
+        locationManager.requestLocation()
+        locationManager.locationUpdated = { [weak self] location in
+            guard let self = self else { return }
+            
+            self.fetchWeather(in: Coordinates(latitude: "\(location?.latitude ?? 0)", longitude: "\(location?.longitude ?? 0)"))
         }
     }
 }
