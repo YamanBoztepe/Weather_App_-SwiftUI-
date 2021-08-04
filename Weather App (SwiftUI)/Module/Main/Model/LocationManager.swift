@@ -21,13 +21,19 @@ class LocationManager: NSObject {
     func requestLocation() {
         if manager.authorizationStatus != .authorizedWhenInUse {
             manager.requestWhenInUseAuthorization()
+        } else {
+            manager.requestLocation()
         }
-        
-        manager.requestLocation()
     }
 }
 
 extension LocationManager: CLLocationManagerDelegate {
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        if manager.authorizationStatus == .authorizedWhenInUse {
+            manager.requestLocation()
+        }
+    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         locationUpdated?(locations.first?.coordinate)
