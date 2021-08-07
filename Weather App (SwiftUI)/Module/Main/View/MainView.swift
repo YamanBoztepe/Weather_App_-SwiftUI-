@@ -11,22 +11,54 @@ struct MainView: View {
     @ObservedObject private var viewModel = MainViewModel()
     
     var body: some View {
-        NavigationView {
-            VStack {
+        VStack {
+            VStack(spacing: 30) {
+                header
                 weatherBody
-                Spacer()
             }
-            .padding(20)
-            .navigationBarTitle(viewModel.place, displayMode: .inline)
+            Spacer()
         }
+        .background(setBackgroundColor(for: viewModel.weatherModel.main)
+                        .ignoresSafeArea())
     }
     
     var weatherBody: some View {
-        WeatherView(temperature: viewModel.temp,
-                    description: viewModel.desc,
-                    icon: viewModel.icon)
+        WeatherView(temperature: viewModel.weatherModel.temp,
+                    description: viewModel.weatherModel.desc,
+                    icon: viewModel.weatherModel.icon,
+                    main: viewModel.weatherModel.main,
+                    windSpeed: viewModel.weatherModel.windSpeed,
+                    humidity: viewModel.weatherModel.humidity)
+    }
+    
+    var header: some View {
+        MainHeaderView(place: viewModel.weatherModel.place)
+    }
+    
+    @ViewBuilder
+    private func setBackgroundColor(for weather: String) -> some View {
+        switch weather {
+        case "Clear":
+            LinearGradient(gradient: Gradient(colors: [CustomColor.yellow, CustomColor.darkYellow]), startPoint: .top, endPoint: .bottom)
+        case "Rain":
+            CustomColor.blueOne
+        default:
+            CustomColor.blueTwo
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {

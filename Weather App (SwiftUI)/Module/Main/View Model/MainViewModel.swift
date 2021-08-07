@@ -8,18 +8,24 @@
 import Foundation
 
 class MainViewModel: ObservableObject {
-    @Published var temp = "-"
-    @Published var desc = "-"
-    @Published var place = "-"
-    @Published var icon = ""
+    @Published private(set) var weatherModel = WeatherModel()
     
     private let locationManager = LocationManager()
     
     init() {
+        updateWeather()
         getLocation()
     }
     
     // MARK: - Fetching Weather
+    private func updateWeather() {
+        locationManager.locationUpdated = { [weak self] location in
+            guard let self = self else { return }
+            
+            self.fetchWeather(in: Coordinates(latitude: "\(location?.latitude ?? 0)", longitude: "\(location?.longitude ?? 0)"))
+        }
+    }
+    
     private func fetchWeather(in coordinates: Coordinates) {
         let url = ApiConstants.getBaseUrl(with: ApiConstants.latitude + coordinates.latitude
                                             + "&" +
@@ -33,15 +39,7 @@ class MainViewModel: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):
-                    guard let desc = response.weather?.first?.description,
-                          let place = response.name,
-                          let icon = response.weather?.first?.main,
-                          let temp = response.main?.temp else { return }
-                    
-                    self.desc = desc
-                    self.place = place
-                    self.icon = self.setIcon(for: icon)
-                    self.temp = "\(Int(temp - 273.15))" // convert from fahrenheit to celsius
+                    self.weatherModel = .init(model: response)
                     
                 case .failure(let error):
                     print(error)
@@ -50,23 +48,8 @@ class MainViewModel: ObservableObject {
         }
     }
     
-    // MARK: - Layout Actions
-    private func setIcon(for weather: String) -> String {
-        switch weather {
-        case "Clear":
-            return "sun.min"
-        default:
-            return "moon"
-        }
-    }
-    
     // MARK:- Location Actions
     private func getLocation() {
         locationManager.requestLocation()
-        locationManager.locationUpdated = { [weak self] location in
-            guard let self = self else { return }
-            
-            self.fetchWeather(in: Coordinates(latitude: "\(location?.latitude ?? 0)", longitude: "\(location?.longitude ?? 0)"))
-        }
     }
 }

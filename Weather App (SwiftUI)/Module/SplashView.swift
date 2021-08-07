@@ -13,18 +13,24 @@ struct SplashView: View {
     
     var body: some View {
         ZStack {
-            MainView()
-            
-            ZStack {
-                Color("splashBackground")
-                Image("appcentLogo")
-                    .aspectRatio(contentMode: .fit)
-                    .scaleEffect(animate ? 15 : 1)
+            if isAnimateCompleted {
+                MainView()
+                
+            } else {
+                splashBody
             }
-            .ignoresSafeArea()
-            .onAppear(perform: animateLogo)
-            .opacity(isAnimateCompleted ? 0 : 1)
         }
+    }
+    
+    var splashBody: some View {
+        ZStack {
+            Color("splashBackground")
+            Image("appcentLogo")
+                .aspectRatio(contentMode: .fit)
+                .scaleEffect(animate ? 15 : 1)
+        }
+        .ignoresSafeArea()
+        .onAppear(perform: animateLogo)
     }
     
     private func animateLogo() {

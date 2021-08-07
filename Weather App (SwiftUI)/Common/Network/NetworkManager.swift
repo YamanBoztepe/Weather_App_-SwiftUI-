@@ -29,7 +29,6 @@ class NetworkManager {
             
             do {
                 let result = try JSONDecoder().decode(responseModel.self, from: data)
-                print(result)
                 completion(.success(result))
             } catch {
                 print(error)

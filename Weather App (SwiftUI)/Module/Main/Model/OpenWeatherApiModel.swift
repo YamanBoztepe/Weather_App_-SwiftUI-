@@ -11,6 +11,7 @@ struct OpenWeatherApiModel: Decodable {
     let weather: [Weather]?
     let main: Main?
     let name: String?
+    let wind: Wind?
 }
 
 struct Weather: Decodable {
@@ -20,4 +21,9 @@ struct Weather: Decodable {
 
 struct Main: Decodable {
     let temp: Float?
+    let humidity: Float?
+}
+
+struct Wind: Decodable {
+    let speed: Float?
 }
