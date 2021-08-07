@@ -21,6 +21,7 @@
 		1CA576DE26B5A3860045910A /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA576DD26B5A3860045910A /* WeatherView.swift */; };
 		1CFB10F326BEBB0900BC9F88 /* MainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CFB10F226BEBB0900BC9F88 /* MainHeaderView.swift */; };
 		1CFB10F526BED41300BC9F88 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CFB10F426BED41300BC9F88 /* WeatherModel.swift */; };
+		1CFB111226BF393400BC9F88 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CFB111126BF393400BC9F88 /* WeatherViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		1CA576DD26B5A3860045910A /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		1CFB10F226BEBB0900BC9F88 /* MainHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeaderView.swift; sourceTree = "<group>"; };
 		1CFB10F426BED41300BC9F88 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		1CFB111126BF393400BC9F88 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 				1CA576D526B593DB0045910A /* OpenWeatherApiModel.swift */,
 				1CA576D926B599D70045910A /* Coordinates.swift */,
 				1C61A2C926B9E0B100A8DCB0 /* LocationManager.swift */,
+				1CFB111126BF393400BC9F88 /* WeatherViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CA576D626B593DB0045910A /* OpenWeatherApiModel.swift in Sources */,
+				1CFB111226BF393400BC9F88 /* WeatherViewModel.swift in Sources */,
 				1C145F1D26B57FCF00E7A74B /* NetworkManager.swift in Sources */,
 				1CA576DA26B599D70045910A /* Coordinates.swift in Sources */,
 				1C145F0926B57EDF00E7A74B /* MainView.swift in Sources */,

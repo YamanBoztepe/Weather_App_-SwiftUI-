@@ -14,7 +14,7 @@ class MainViewModel: ObservableObject {
     
     init() {
         updateWeather()
-        getLocation()
+        locationManager.requestLocation()
     }
     
     // MARK: - Fetching Weather
@@ -46,10 +46,5 @@ class MainViewModel: ObservableObject {
                 }
             }
         }
-    }
-    
-    // MARK:- Location Actions
-    private func getLocation() {
-        locationManager.requestLocation()
     }
 }

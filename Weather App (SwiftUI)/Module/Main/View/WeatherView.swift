@@ -8,10 +8,7 @@
 import SwiftUI
 
 struct WeatherView: View {
-    let temperature, description, icon, main: String
-    let windSpeed: Float
-    let humidity: Int
-    
+    let model: WeatherViewModel
     
     var body: some View {
         VStack(spacing: 20) {
@@ -21,20 +18,20 @@ struct WeatherView: View {
     }
     
     var iconBody: some View {
-        Image(icon)
+        Image(model.icon)
             .resizable()
             .frame(width: 200, height: 200)
-            .foregroundColor(setIconColor(for: main))
+            .foregroundColor(setIconColor(for: model.main))
             .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.5), radius: 20)
     }
     
     var weatherTextBody: some View {
         VStack(spacing: 5) {
-            Text(description)
+            Text(model.description)
                 .font(.subheadline)
                 .fontWeight(.semibold)
             
-            Text("\(temperature) °")
+            Text("\(model.temperature) °")
                 .font(.system(size: 70))
                 .fontWeight(.semibold)
             
@@ -51,14 +48,14 @@ struct WeatherView: View {
     var windView: some View {
         HStack(spacing: 10) {
             Image(systemName: "wind")
-            Text("\(windSpeed, specifier: "%.2f") km/h")
+            Text("\(model.windSpeed, specifier: "%.2f") km/h")
         }
     }
     
     var humidityView: some View {
         HStack(spacing: 10) {
             Image(systemName: "drop")
-            Text("\(humidity) %")
+            Text("\(model.humidity) %")
         }
     }
     

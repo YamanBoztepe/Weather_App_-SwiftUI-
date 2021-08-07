@@ -22,17 +22,12 @@ struct MainView: View {
                         .ignoresSafeArea())
     }
     
-    var weatherBody: some View {
-        WeatherView(temperature: viewModel.weatherModel.temp,
-                    description: viewModel.weatherModel.desc,
-                    icon: viewModel.weatherModel.icon,
-                    main: viewModel.weatherModel.main,
-                    windSpeed: viewModel.weatherModel.windSpeed,
-                    humidity: viewModel.weatherModel.humidity)
-    }
-    
     var header: some View {
         MainHeaderView(place: viewModel.weatherModel.place)
+    }
+    
+    var weatherBody: some View {
+        WeatherView(model: .init(viewModel.weatherModel))
     }
     
     @ViewBuilder
@@ -40,8 +35,10 @@ struct MainView: View {
         switch weather {
         case "Clear":
             LinearGradient(gradient: Gradient(colors: [CustomColor.yellow, CustomColor.darkYellow]), startPoint: .top, endPoint: .bottom)
+            
         case "Rain":
             CustomColor.blueOne
+            
         default:
             CustomColor.blueTwo
         }

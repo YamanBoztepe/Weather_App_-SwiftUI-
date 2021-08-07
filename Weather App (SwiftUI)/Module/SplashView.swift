@@ -39,9 +39,7 @@ struct SplashView: View {
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            withAnimation(.easeOut(duration: 0.5)) {
-                isAnimateCompleted = true
-            }
+            isAnimateCompleted = true
         }
     }
 }
