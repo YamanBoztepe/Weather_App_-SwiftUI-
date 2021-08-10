@@ -11,15 +11,19 @@ struct MainView: View {
     @ObservedObject private var viewModel = MainViewModel()
     
     var body: some View {
-        VStack {
-            VStack(spacing: 30) {
-                header
-                weatherBody
+        NavigationView {
+            VStack {
+                VStack(spacing: 30) {
+                    header
+                    weatherBody
+                }
+                Spacer()
+                dailyWeatherBody
             }
-            Spacer()
+            .background(setBackgroundColor(for: viewModel.weatherModel.main)
+                            .ignoresSafeArea())
+            .navigationBarHidden(true)
         }
-        .background(setBackgroundColor(for: viewModel.weatherModel.main)
-                        .ignoresSafeArea())
     }
     
     var header: some View {
@@ -28,6 +32,19 @@ struct MainView: View {
     
     var weatherBody: some View {
         WeatherView(model: .init(viewModel.weatherModel))
+    }
+    
+    var dailyWeatherBody: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 20) {
+                ForEach(0..<5) { _ in
+                    DailyWeatherView()
+                        .frame(width: 120, height: 230)
+                }
+            }
+            .padding(.horizontal, 20)
+        }
+        .padding(.bottom, 20)
     }
     
     @ViewBuilder

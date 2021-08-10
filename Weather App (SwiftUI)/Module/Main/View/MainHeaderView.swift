@@ -35,11 +35,9 @@ struct MainHeaderView: View {
     }
     
     var detailsBody: some View {
-        Button(action: {
-            print("Tapped")
-        }) {
-            Image(systemName: "calendar")
-                .renderingMode(.original)
-        }
+        NavigationLink(
+            destination: WeatherDetailsView(place: place)) {
+                Image(systemName: "calendar").renderingMode(.original)
+            }
     }
 }

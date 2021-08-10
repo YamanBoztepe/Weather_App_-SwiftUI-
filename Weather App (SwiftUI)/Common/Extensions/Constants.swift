@@ -25,4 +25,6 @@ struct CustomColor {
     static let blueOne = Color.init(red: 148/255, green: 246/255, blue: 229/255)
     static let blueTwo = Color.init(red: 124/255, green: 210/255, blue: 247/255)
     static let darkBlue = Color.init(red: 48/255, green: 46/255, blue: 96/255)
+    
+    static let darkGray = Color.init(red: 35/255, green: 37/255, blue: 53/255)
 }
