@@ -2,24 +2,17 @@
 //  SplashView.swift
 //  Weather App (SwiftUI)
 //
-//  Created by Yaman Boztepe on 5.08.2021.
+//  Created by Yaman Boztepe on 10.08.2021.
 //
 
 import SwiftUI
 
 struct SplashView: View {
     @State private var animate = false
-    @State private var isAnimateCompleted = false
+    @Binding var isAnimateEnded: Bool
     
     var body: some View {
-        ZStack {
-            if isAnimateCompleted {
-                MainView()
-                
-            } else {
-                splashBody
-            }
-        }
+        splashBody
     }
     
     var splashBody: some View {
@@ -39,13 +32,7 @@ struct SplashView: View {
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            isAnimateCompleted = true
+            isAnimateEnded = true
         }
-    }
-}
-
-struct SplashView_Previews: PreviewProvider {
-    static var previews: some View {
-        SplashView()
     }
 }
