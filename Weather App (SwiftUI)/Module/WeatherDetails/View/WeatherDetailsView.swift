@@ -20,13 +20,14 @@ struct WeatherDetailsView: View {
             }
         }
         .navigationBarTitle(place, displayMode: .inline)
+        .setDarkNavigationBar()
     }
     
     var warningBody: some View {
         TabView {
             ForEach(0 ..< 3) { _ in
                 WeatherWarningView()
-                    .frame(height: 200)
+                    .frame(height: 250)
                     .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5))
             }
         }

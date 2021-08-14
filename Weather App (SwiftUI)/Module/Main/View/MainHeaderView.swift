@@ -23,9 +23,7 @@ struct MainHeaderView: View {
     
     var locationBody: some View {
         HStack(spacing: 15) {
-            Button(action: {
-                print("Tapped")
-            }) {
+            Button(action: { }) {
                 Image("placemarker")
             }
             

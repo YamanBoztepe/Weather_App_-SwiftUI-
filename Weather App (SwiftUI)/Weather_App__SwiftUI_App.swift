@@ -12,6 +12,7 @@ struct Weather_App__SwiftUI_App: App {
     var body: some Scene {
         WindowGroup {
             RootView()
+                .onAppear(perform: UIApplication.shared.switchHostingController)
         }
     }
 }

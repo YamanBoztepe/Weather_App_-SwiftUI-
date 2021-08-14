@@ -23,6 +23,9 @@ struct MainView: View {
             .background(setBackgroundColor(for: viewModel.weatherModel.main)
                             .ignoresSafeArea())
             .navigationBarHidden(true)
+            .onAppear {
+                StatusBar.current.setDarkColor()
+            }
         }
     }
     
